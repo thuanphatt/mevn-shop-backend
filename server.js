@@ -1,9 +1,9 @@
 const express = require("express");
 require("dotenv").config();
-// const cors = require("cors");
+const cors = require("cors");
 const getNowTime = require("./utils/getNowTime");
 const app = express();
-// app.use(cors());
+app.use(cors());
 const http = require("http").createServer(app);
 
 const mongodb = require("mongodb");
@@ -43,6 +43,7 @@ global.socketIO = socketIO;
 
 // Add headers before the routes are defined
 app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");
 
